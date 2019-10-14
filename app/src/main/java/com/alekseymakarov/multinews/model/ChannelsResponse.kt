@@ -1,6 +1,6 @@
 package com.alekseymakarov.multinews.model
 
-data class Channels(
+data class ChannelsResponse(
     val sources: List<Channel>,
     val status: String
 )
