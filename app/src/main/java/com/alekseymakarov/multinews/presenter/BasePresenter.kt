@@ -4,6 +4,6 @@ import com.alekseymakarov.multinews.view.BaseView
 
 interface BasePresenter {
 
-
+    fun getDataFromServer()
     fun detachView ()
 }

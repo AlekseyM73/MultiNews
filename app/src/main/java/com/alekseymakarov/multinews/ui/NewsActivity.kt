@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.alekseymakarov.multinews.R
+import com.alekseymakarov.multinews.model.Article
 import com.alekseymakarov.multinews.presenter.NewsPresenter
 import com.alekseymakarov.multinews.view.BaseView
 
-class NewsActivity : AppCompatActivity(), BaseView {
+class NewsActivity : AppCompatActivity(), BaseView<Article> {
 
     private lateinit  var newsPresenter : NewsPresenter
 
@@ -23,7 +24,9 @@ class NewsActivity : AppCompatActivity(), BaseView {
         setContentView(R.layout.activity_news)
         initViews()
 
-        newsPresenter = NewsPresenter(this)
+        newsPresenter = NewsPresenter(this, applicationContext)
+        newsPresenter.getDataFromServer()
+
     }
 
     private fun initViews(){
@@ -32,6 +35,10 @@ class NewsActivity : AppCompatActivity(), BaseView {
         newsListItemTVDesc = findViewById(R.id.newsListItemTVDesc)
         newsListItemTVPublAt = findViewById(R.id.newsListItemTVPublAt)
         newsListImageView = findViewById(R.id.newsListImageView)*/
+    }
+
+    override fun showData(data : List<Article>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showProgress() {
