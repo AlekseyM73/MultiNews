@@ -2,8 +2,8 @@ package com.alekseymakarov.multinews.presenter
 
 import com.alekseymakarov.multinews.view.BaseView
 
-interface BasePresenter<V : BaseView> {
+interface BasePresenter {
 
-    fun attach (view: V)
-    fun detach ()
+
+    fun detachView ()
 }
