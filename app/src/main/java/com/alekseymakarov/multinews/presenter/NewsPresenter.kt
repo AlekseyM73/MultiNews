@@ -20,15 +20,22 @@ class NewsPresenter (var view: BaseView<Article>?, val context:Context) : BasePr
         val s = arrayOf("time")
         ApiService.apiService.getEverythingNews("auto","",*s,
             from = "",to = "",language = "en", sortBy = "",
-            pageSize = 20, page = 1, apiKey = ""
-            ).observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result -> Toast.makeText(context,"$result.status",Toast.LENGTH_LONG).show()
-                    //Log.d("Result","$result.status")
+            pageSize = 20, page = 1, apiKey = "1a5a540b854a482ab8cac0ebf385f921"
+            ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> Toast.makeText(context,"${result.totalResults}",Toast.LENGTH_LONG).show()
+                    Log.d("Result","$result.status")
                     },
-                { error -> (error.message) }
+                { error -> (Toast.makeText(context,"${error.message}",Toast.LENGTH_LONG).show()) }
             )
-
+       /* ApiService.apiService.getAllSources("application/json","1a5a540b854a482ab8cac0ebf385f921").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> Toast.makeText(context,"${result.status}",Toast.LENGTH_LONG).show()
+                Log.d("Result","$result.status")
+            },
+                { error ->
+                    (Toast.makeText(context,"${error.message}",Toast.LENGTH_LONG).show()
+                            )
+                }
+            )*/
     }
     override
     fun detachView (){
